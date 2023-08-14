@@ -19,6 +19,7 @@ Se você ainda não possui uma conta na AWS, siga estas etapas para criar uma:
 2. No canto superior direito, clique na sua conta e selecione "My Security Credentials".
 3. Clique em "Continuar para Security Credentials".
 4. Na seção "Access keys (access key ID and secret access key)", crie ou gere uma nova chave de acesso.
+5. Entre no servidor e execute o  `aws configure` para configurar as credenciais
 
 ## Parte 2: Configuração de Atualização Automática de DNS Dinâmico
 ### Passo 1: Crie uma Política no IAM
