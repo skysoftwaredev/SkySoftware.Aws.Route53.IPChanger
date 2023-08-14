@@ -27,14 +27,21 @@ Exemplo de política JSON:
     "Version": "2012-10-17",
     "Statement": [
         {
+            "Sid": "VisualEditor0",
             "Effect": "Allow",
-            "Action": [
-                "route53:ChangeResourceRecordSets",
-                "route53:GetChange"
-            ],
-            "Resource": [
-                "arn:aws:route53:::hostedzone/YOUR_HOSTED_ZONE_ID"
-            ]
+            "Action": "route53:GetChange",
+            "Resource": "arn:aws:route53:::change/hostzoneID"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "route53:ChangeResourceRecordSets",
+            "Resource": "arn:aws:route53:::hostedzone/hostzoneID",
+            "Condition": {
+                "ForAllValues:StringEquals": {
+                    "route53:ChangeResourceRecordSetsNormalizedRecordNames": "domain.com.br"
+                }
+            }
         }
     ]
 }
