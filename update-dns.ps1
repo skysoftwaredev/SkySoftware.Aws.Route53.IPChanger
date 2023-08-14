@@ -25,31 +25,33 @@ function Update-LocalIP($newIP){
 
 # Função para atualizar o registro DNS no Route 53
 function Update-DNSRecord ($newIP) {
-    $changeObject = @{
-        Changes = @(
-            @{
-                Action = "UPSERT"
-                ResourceRecordSet = @{
-                    Name = $recordName
-                    Type = "A"
-                    TTL = $ttl
-                    ResourceRecords = @(
-                        @{
-                            Value = $newIP
-                        }
-                    )
+    if ([bool]($newIP -as [ipaddress])){
+        $changeObject = @{
+            Changes = @(
+                @{
+                    Action = "UPSERT"
+                    ResourceRecordSet = @{
+                        Name = $recordName
+                        Type = "A"
+                        TTL = $ttl
+                        ResourceRecords = @(
+                            @{
+                                Value = $newIP
+                            }
+                        )
+                    }
                 }
-            }
-        )
+            )
+        }
+
+        $jsonString = $changeObject | ConvertTo-Json -Depth 10
+        
+        Set-Content -Path .\change.json -Value $jsonString
+
+        aws route53 change-resource-record-sets `
+            --hosted-zone-id $hostedZoneId `
+            --change-batch  file://.\change.json
     }
-
-    $jsonString = $changeObject | ConvertTo-Json -Depth 10
-    
-    Set-Content -Path .\change.json -Value $jsonString
-
-    aws route53 change-resource-record-sets `
-        --hosted-zone-id $hostedZoneId `
-        --change-batch  file://.\change.json
 }
 
 # Execute o script
