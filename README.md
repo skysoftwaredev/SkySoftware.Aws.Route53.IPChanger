@@ -8,7 +8,13 @@ Se você ainda não possui uma conta na AWS, siga estas etapas para criar uma:
 
 1. Acesse https://aws.amazon.com/ e clique em "Crie uma conta gratuita".
 2. Siga as instruções para criar uma conta AWS com suas informações.
-### Passo 2: Configuração de Credenciais
+
+### Passo 2: Instale a AWS CLI
+1. Baixe a AWS CLI através do link https://awscli.amazonaws.com/AWSCLIV2.msi.
+2. Execute o arquivo baixado AWSCLIV2.msi para iniciar o instalador.
+3. Siga as instruções do instalador para concluir a instalação.
+
+### Passo 3: Configuração de Credenciais
 1. Após criar sua conta, acesse o Console de Gerenciamento da AWS.
 2. No canto superior direito, clique na sua conta e selecione "My Security Credentials".
 3. Clique em "Continuar para Security Credentials".
